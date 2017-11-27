@@ -21,11 +21,11 @@ public class Restaurant {
                              {"Chicken Zinger","Veg Zinger","Rice Meal Box","Hot & Crispy Chicken","Cheesy Wedges"},
                              {"Salmon","Kani Maki","Tamago Maki","Unagi","Inari Ebiko","Cheese Chu Maki","Tempura Udon"},
                              {"Chao Gui Diao","Wan Dan Hor","Yee Mee Soup with Egg","Fried Rice"}};
-    private String[][] price={{"RM 5.00","RM 5.50","RM 3.50","RM 5.80",},
-                              {"RM 8.99","RM 8.99","RM 9.50","RM 12.50","RM 10.99","RM 11.50",},
-                              {"RM 5.30","RM 7.00","RM 8.80","RM 6.60","RM 5.00"},
-                              {"RM 2.80","RM 2.80","RM 1.80","RM 3.80","RM 1.80","RM 2.80","RM 9.90"}, 
-                              {"RM 6.50","RM 4.80","RM 4.60","RM 5.00"} };
+    private double[][] price={{5.00,5.50,3.50,5.80,},
+                              {8.99,8.99,9.50,12.50,10.99,11.50,},
+                              {5.30,7.00,8.80,6.60,5.00},
+                              {2.80,2.80,1.80,3.80,1.80,2.80,9.90}, 
+                              {6.50,4.80,4.60,5.00} };
             Scanner sc=new Scanner(System.in);
             int no;
             int rs;
@@ -67,7 +67,7 @@ public class Restaurant {
     
       public void ChooseMenu(int res){
         
-        ArrayList<String> list=new ArrayList<String>();
+        ArrayList<Order> list=new ArrayList<Order>();
         int choice=1;
         int num=0;
         
@@ -76,7 +76,7 @@ public class Restaurant {
             String m="\n\t\tMenu\t\t|\tPrice\n===================================================\n";
         for(int i=0;i<menu[res].length;i++){
             
-        m+=(i+1)+". "+String.format("%-28s", menu[res][i])+" |  "+String.format("%-13s", price[res][i])+"\n";
+        m+=(i+1)+". "+String.format("%-28s", menu[res][i])+" |  "+String.format("RM %.2f", price[res][i])+"\n";
         }
         System.out.println(m);
         System.out.print("Order >");
@@ -87,10 +87,10 @@ public class Restaurant {
          }while(qty<1||qty>10);
          
          if(no>=1&&no<menu[res].length){
-         String fd=qty+" "+menu[res][(no-1)];
-             list.add(fd);
-           
-           
+        // String fd=qty+" "+menu[res][(no-1)];
+            Order od=new Order(menu[res][no-1],qty,price[res][no-1]);
+             list.add(od);
+                 
            System.out.print("Continue order? (Exit=0)>");
            choice=sc.nextInt();
            
@@ -107,15 +107,19 @@ public class Restaurant {
       
       
         public void displayOrderList(){
- 
-            String ol="\nNo    Order List\t     　  |\tPrice\n=======================================================\n";
+            int c;
+            String ol="===================================================\nNo    Order List\t     　  |\tPrice\n===================================================\n";
         for(int i=0;i<od.getOrderList().size();i++){
-            ol+=(i+1)+".  "+String.format("%-28s", od.getOrderList().get(i))+" | "+String.format("%-13s", price[rs][i])+"\n";
-       
-        
+            ol+=(i+1)+")  "+String.format("%-28s", od.getOrderList().get(i).getQty()+" "+od.getOrderList().get(i).getFoodNm())
+                    +" | "+String.format("RM %.2f", od.getOrderList().get(i).getPrice())+"\n";
+            
         }
+        ol+="***************************************************\n\t\t\t\t | RM "+od.calTotal(od.getOrderList())+"\n***************************************************";
+        do{
                System.out.println(ol);
-                      
+               System.out.print("(1-Confirm 2-Cancel) >");
+               c=sc.nextInt();
+        }while(c!=1&&c!=2);
     }  
     
       
