@@ -48,6 +48,15 @@ public class Order {
         orderList=od;
     }
     
+    public String confirmation(int c){
+        String message="";
+        if(c==1){
+            message="Order Successful!";
+        }else if(c==2){
+            message="Order Cancel";
+        }
+        return message;
+    }
     
     public ArrayList<Order> getOrderList(){
         return orderList;

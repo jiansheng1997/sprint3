@@ -49,12 +49,12 @@ public class Restaurant {
     
     public int ChooseRes(){
         String res="\n";
-       
-        do{
-        for(int i=0;i<name.length;i++){
+   
+       for(int i=0;i<name.length;i++){
         res+=(i+1)+". "+name[i]+"\n";
         }
-        res+="Please select a Restaurant >";
+          res+="\nPlease select a Restaurant >";
+        do{
         System.out.print(res);
         no=sc.nextInt();
         
@@ -79,21 +79,22 @@ public class Restaurant {
         m+=(i+1)+". "+String.format("%-28s", menu[res][i])+" |  "+String.format("RM %.2f", price[res][i])+"\n";
         }
         System.out.println(m);
-        System.out.print("Order >");
-         no=sc.nextInt();
-         do{
+        do{ 
+         System.out.print("Order >");
+        no=sc.nextInt();
+        }while(no<1||no>menu[res].length); 
+        do{
         System.out.print("Quantity(1 to 10) >");
          qty=sc.nextInt();
          }while(qty<1||qty>10);
          
-         if(no>=1&&no<menu[res].length){
+         if(no>=1&&no<=menu[res].length){
         // String fd=qty+" "+menu[res][(no-1)];
             Order od=new Order(menu[res][no-1],qty,price[res][no-1]);
              list.add(od);
                  
            System.out.print("Continue order? (Exit=0)>");
            choice=sc.nextInt();
-           
          }
 
          
@@ -114,12 +115,13 @@ public class Restaurant {
                     +" | "+String.format("RM %.2f", od.getOrderList().get(i).getPrice())+"\n";
             
         }
-        ol+="***************************************************\n\t\t\t\t | RM "+od.calTotal(od.getOrderList())+"\n***************************************************";
+        ol+="***************************************************\n\tTotal :\t\t\t | "+ String.format("RM %.2f", od.calTotal(od.getOrderList()))+"\n***************************************************";
         do{
                System.out.println(ol);
                System.out.print("(1-Confirm 2-Cancel) >");
                c=sc.nextInt();
         }while(c!=1&&c!=2);
+        System.out.println("\n"+od.confirmation(c));
     }  
     
       
