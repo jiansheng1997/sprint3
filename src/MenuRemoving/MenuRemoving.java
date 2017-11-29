@@ -18,8 +18,10 @@ public class MenuRemoving {
     
     public void removeItemFunction(){
         System.out.println("\nThese are the items that can be removed.");
+        System.out.printf("Food Code\tFood Name\t\tPrice\t\tDescription\t\tCalories\tStatus\n");
+        System.out.println("=========\t=========\t\t=====\t\t===========\t\t========\t======");
         for (Menu a : lMenu)
-            System.out.printf("%-7s\t%-20s\tRM %7.2f\t%-20s\t%4d kcal\t%-10s\n", a.getFoodCode(), a.getFoodName(), a.getPrice(), a.getDescription(), a.getCalories(), a.getStatus());
+            System.out.printf("%-15s\t%-20s\tRM %7.2f\t%-20s\t%4d kcal\t%-10s\n", a.getFoodCode(), a.getFoodName(), a.getPrice(), a.getDescription(), a.getCalories(), a.getStatus());
         System.out.print("\nEnter the food code to remove: ");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
