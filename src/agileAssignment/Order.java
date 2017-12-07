@@ -80,16 +80,62 @@ public class Order {
     
     
     public static void main(String []args){
+        boolean ck=true;
+Customer c=new Customer();
+        c.initializeCustomer();
         int no;
         Scanner sc=new Scanner(System.in);
         Order od=new Order();
-        Restaurant r=new Restaurant();
-        no=r.ChooseRes();
-        System.out.println();
-        r.ChooseMenu((no-1));
-        System.out.println();
-        r.displayOrderList();
+        do{
+        System.out.println("\n1. Make Order");
+        System.out.println("2. Retrieve customer info");
+        System.out.println("0. Exit");  
+        System.out.print("Enter your choice:");
+        no=sc.nextInt();        
+        if(no==1){
+         Restaurant r=new Restaurant();
+         no=r.ChooseRes();
+         System.out.println();
+         r.ChooseMenu((no-1));
+         System.out.println();
+         r.displayOrderList();
+        }
+        else if (no==2){
+            ck=choice2();
         
-        
+        } else{
+        ck=false;
+        }
+            
+        }while(ck==false);
     }
+    
+    
+    
+       public static boolean choice2(){
+          String phoneNo;
+                  Customer c=new Customer();
+          Scanner sc=new Scanner(System.in);
+          Customer cc=new Customer();
+          int count=0;
+          boolean ck=true;
+do{
+           
+          System.out.print("Enter the customer phone number to retrieve the customer information :");
+          phoneNo=sc.next();
+          cc=c.retrieveInfo(phoneNo);
+           count++;
+           if(count==3){
+         System.out.println("\nThe phone number cannot found.");
+         ck=false;
+            break;
+           }
+        }while(cc==null);
+        if(ck==true)
+          c.DisplayCustInfo(cc);
+        
+        return ck;
+        }
+
 }
+
