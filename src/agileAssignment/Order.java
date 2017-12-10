@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author user1
  */
 public class Order {
-    
+      static Customer c=new Customer();
+        
     private String foodNm;
     private int qty;
     private double price;
@@ -81,8 +82,6 @@ public class Order {
     
     public static void main(String []args){
         boolean ck=true;
-Customer c=new Customer();
-        c.initializeCustomer();
         int no;
         Scanner sc=new Scanner(System.in);
         Order od=new Order();
@@ -101,9 +100,19 @@ Customer c=new Customer();
          r.displayOrderList();
         }
         else if (no==2){
+           int no2; 
+            do{
             ck=choice2();
-        
-        } else{
+           System.out.print("Continue to retrieve customer info?(1 - Continue 2 - Main Menu) > ");  
+           no2=sc.nextInt();
+            if(no2==2){
+            ck=false; 
+            break;
+            }}while(no2==1);
+
+        } else if(no==0){
+        ck=true;
+        }else{
         ck=false;
         }
             
@@ -114,18 +123,17 @@ Customer c=new Customer();
     
        public static boolean choice2(){
           String phoneNo;
-                  Customer c=new Customer();
+         c.initializeCustomer();
           Scanner sc=new Scanner(System.in);
           Customer cc=new Customer();
           int count=0;
           boolean ck=true;
-do{
-           
+do{          
           System.out.print("Enter the customer phone number to retrieve the customer information :");
           phoneNo=sc.next();
           cc=c.retrieveInfo(phoneNo);
            count++;
-           if(count==3){
+           if(count==3&&cc==null){
          System.out.println("\nThe phone number cannot found.");
          ck=false;
             break;

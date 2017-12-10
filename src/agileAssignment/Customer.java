@@ -25,7 +25,7 @@ public class Customer {
 
     public void initializeCustomer(){
         Customer c1=new Customer("C1000","OD100","Phuah Wai Yan","0191738031","Batu 9, Jalan Banting -Klang, Telok Panglima Garang Industrial Estate");
-        Customer c2=new Customer("C1001","OD101","Quek Wei Jian","0141324324","	28-01, Jalan Molek 1/10, Taman Molek");
+        Customer c2=new Customer("C1001","OD101","Quek Wei Jian","0141324324","28-01, Jalan Molek 1/10, Taman Molek");
         Customer c3=new Customer("C1002","OD131","Ng Yi Sam","0129274024","No 2754, 2nd floor, Jalan Chain Ferry Taman Inderawasih");
         Customer c4=new Customer("C1003","OD032","Seong Jian Sheng","0169274024","No 2754, 2nd floor, Jalan Chain Ferry Taman Inderawasih");
  
@@ -90,10 +90,7 @@ public class Customer {
         for(int i=0;i<cust.size();i++){
         if(phoneNo.equals(cust.get(i).getPhoneNo()))
             cus=cust.get(i);   
-        else
-            cus=null;
         }
-          
         return cus;
     }
     
