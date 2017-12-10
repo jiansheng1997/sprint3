@@ -103,7 +103,7 @@ public class Order {
            int no2; 
             do{
             ck=choice2();
-           System.out.print("Continue to retrieve customer info?(1 - Continue 2 - Main Menu) > ");  
+           System.out.print("\nContinue to retrieve customer info?(1 - Continue 2 - Main Menu) > ");  
            no2=sc.nextInt();
             if(no2==2){
             ck=false; 
