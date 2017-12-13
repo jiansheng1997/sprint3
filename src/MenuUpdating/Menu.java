@@ -1,5 +1,4 @@
-package menuadding;
-
+package MenuUpdating;
 
 public class Menu {
 
